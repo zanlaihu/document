@@ -1,0 +1,1 @@
+import{_ as p,o as e,c as t,O as a}from"./chunks/framework.303c7780.js";const f=JSON.parse('{"title":"第一章","description":"","frontmatter":{},"headers":[],"relativePath":"novel/1.md","filePath":"novel/1.md"}'),o={name:"novel/1.md"},_=a("",76),r=[_];function n(s,c,i,d,l,h){return e(),t("div",null,r)}const u=p(o,[["render",n]]);export{f as __pageData,u as default};

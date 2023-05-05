@@ -1,28 +1,48 @@
+---
+outline: deep
+---
+
 # Create lottery-turntable without third-party
 
 ## Background
 The big turntable is a kind of marketing activity, used to increase users' stickiness.
+
 With the development of the times, sweepstakes have sprung up like mushrooms after rain. However,  the turntable is always the most classic one. 
+
 This article will explains how to make a big turntable with the native ability of React and CSS. 
+
 ## How to make it rotating
-First of all, we need to make it rotating.
-There are millions of ways to make an element rotate (maybe a little bit of exaggerated). 
-"transform" is the right property  to do it. Besides, let's add "transition" to simulate acceleration and deceleration.
+There are millions of ways to make an HTML element rotate, In this case, we are going to use some native CSS abilities.
+
+`transform` is the right property to rotate something.
+
+`transition` is used to simulate acceleration and deceleration.
+
+For example:
 ```tsx
 const ele = document.getElementById('turntable') as HTMLElement
 ele.style.transition = 'all 6500ms'
-ele.style.transform = `rotate(${rotateDeg + 360 * 10}deg)` 
+ele.style.transform = `rotate(${rotateDeg}deg)` 
 ```
-## Calculate the degree of rotation
-We also need to calculate the degree of rotation so that the turnable will stop at the right place.
-### The first rotation
-Suppose the turntable has six petals. So each petal is 60 degree.
-![deg.svg](https://cdn.nlark.com/yuque/0/2022/svg/25790591/1671158845286-3253d495-ec98-4346-aac8-dfa568a58cb8.svg#clientId=uef64649a-91da-4&from=drop&height=269&id=PFXB5&originHeight=736&originWidth=748&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7867&status=done&style=none&taskId=ud15b4c1c-615a-4bb6-b0f1-5d078bfc1c3&title=&width=273)
-如果一开始停在1号，中奖区在2号，转盘需要顺时针**转动300度**到达2号区域，这里需要一点空间想象能力。又因为初始transform为0，只要赋值rotateDeg为300。
 
-计算公式为：
-![](https://cdn.nlark.com/yuque/__latex/14e6eb34c8d64d9f01c8821c85d86f83.svg#card=math&code=rotateDeg%20%3D%20360%20-%2060%2A%28NumOfArea-1%29&id=Btz2k)
-该公式只适用于第一次转动。
+## Calculate the degree of rotation
+Before we use `transform` to rotate anything, the degree of rotation shall be calculated so that the turnable will stop at the right place.
+
+### The first rotation
+Suppose the turntable has six petals with 60 degree in each.
+
+<!-- <img src="../deg.svg" width = "300" alt="图片名称" align-items=“center” /> -->
+
+If the turntable starts from `petal one`, and we want it stops at `petal two`. We need to give it 300 degrees.
+
+```tsx
+ele.style.transform = `rotate(${300}deg)` 
+```
+
+The formula is easy:
+
+<img src="../firstrotate.svg" width = "300" alt="图片名称" align-items=“center” />
+
 ### 第二次转动
 ![无标题-2023-01-11-1446.svg](https://cdn.nlark.com/yuque/0/2023/svg/25790591/1673421476669-ff4c3058-3ff0-4b87-b504-19538f901b13.svg#clientId=ua332647a-7b8f-4&from=drop&height=280&id=oL1Nz&originHeight=1182&originWidth=1029&originalType=binary&ratio=1&rotation=0&showTitle=false&size=14313&status=done&style=none&taskId=u18b7531c-c65d-4594-9a92-a49a6bc03b8&title=&width=244)
 第一次转动结束后转盘停在2号区域，转盘的 **transform: rotate(300deg)**。假设新的中奖区域在3号区域，此时该转动多少度？
@@ -92,5 +112,3 @@ export default LuckyDraw
 ```
 
 为了满足业务需求还可以加上复杂的样式和图片。
-## 实际业务场景的大转盘
-实际业务由多个页面组成，转盘只是其中的一部分。
